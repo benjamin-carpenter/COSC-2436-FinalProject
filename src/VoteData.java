@@ -26,9 +26,8 @@ public class VoteData {
         VoteData[] data = new VoteData[990000];
         PerfectHash<VoteData> hashData = new PerfectHash<VoteData>(data,0);
 
-
+        int i=0;
         for (String line: lines){
-            int i=0;
             String[] values = line.split(" ");
             VoteData tempDat = new VoteData(values[0],Integer.valueOf(values[1]),Integer.valueOf(values[2]));
             hashData.insert(i,tempDat);
@@ -37,7 +36,7 @@ public class VoteData {
         return hashData;
     }
     public static VoteData generate(String[] names){
-        int candidateMin=0,candidateMax=6, voteMin=0, voteMax=51, stateMin=1 , stateMax=5 ;
+        int candidateMin=0,candidateMax=6, voteMin=0, voteMax=51, stateMin=0 , stateMax=4 ;
         int randomVote, randomState, randomNom ;
 
         randomNom = ThreadLocalRandom.current().nextInt(candidateMin,candidateMax);

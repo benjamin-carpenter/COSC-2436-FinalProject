@@ -31,5 +31,4 @@ public class Candidate {
     public int[] stateVotes(){
         return stateVotes;
     }
-
 }

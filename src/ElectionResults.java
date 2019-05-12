@@ -37,23 +37,21 @@ public class ElectionResults {
         for(Candidate candidate: candidates){
             if (votes.get_name().equals(candidate.name())){
                 candidate.addVotes(votes.get_state(),votes.get_vote());
-
+                return;
             }
-
         }
     }
     public String toString(){
         String result="";
-        this.sort(true);
+        this.sort(false);
         for (int i = 0; i<candidates.length; i++) {
             int[] stateVotes = candidates[i].stateVotes();
             result += (i+1)+". "+candidates[i].name()+" "+candidates[i].totalVotes()+"\n";
-            for (int j =0; j<states;i++){
-                result += "\t"+j+". "+stateVotes[j]+"\n";
+            for (int j =0; j<states;j++){
+                result += "\t"+(j+1)+". "+stateVotes[j]+"\n";
             }
         }
         return result;
     }
-
 }
 

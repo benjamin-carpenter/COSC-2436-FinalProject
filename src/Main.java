@@ -33,27 +33,11 @@ public class Main {
 
         PerfectHash<VoteData> hashData = VoteData.loadFile("voteData.txt");
 
+        System.out.println(candidateNames.toString());
         ElectionResults results = new ElectionResults(candidateNames,4);
         for (int i =0; i<randomData;i++){
             results.addVotes(hashData.fetch(i));
         }
         System.out.println(results);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     }
 }
