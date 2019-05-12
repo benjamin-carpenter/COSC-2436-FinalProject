@@ -1,15 +1,11 @@
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.PrintWriter;
-import java.io.UnsupportedEncodingException;
-import java.util.WeakHashMap;
+import java.io.*;
+import java.nio.file.*;
 import java.util.concurrent.ThreadLocalRandom;
 public class Main {
 
 
     public static void main(String[] args){
-        int candidateMin=1,candidateMax=6, voteMin=0, voteMax=50, stateMin=1 , stateMax=4 , dataMin=10000, dataMax=1000000;
-        int randomVote, randomState, randomData, randomNom ;
+        int randomData,dataMin=10000, dataMax=1000000;
         int index=0;
         PrintWriter writer = null;
         try {
@@ -19,20 +15,37 @@ public class Main {
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
         }
+        String fileContents = null;
+        try {
+            fileContents = new String(Files.readAllBytes(Paths.get("candData")));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        String[] candidateNames = fileContents.split(System.getProperty("line.separator"));
         randomData = ThreadLocalRandom.current().nextInt(dataMin,dataMax);
         while (index != randomData){
-            randomNom = ThreadLocalRandom.current().nextInt(candidateMin,candidateMax);
-            randomState = ThreadLocalRandom.current().nextInt(stateMin,stateMax);
-            randomVote = ThreadLocalRandom.current().nextInt(voteMin,voteMax);
 
-
-
-            case
-            writer.println(randomNum);
+            writer.println(VoteData.generate(candidateNames));
             index++;
         }
         //System.out.println(randomNum);
         writer.close();
+
+        PerfectHash<VoteData> hashData = VoteData.loadFile("voteData.txt");
+
+        ElectionResults results = new ElectionResults(candidateNames,4);
+        for (int i =0; i<randomData;i++){
+            results.addVotes(hashData.fetch(i));
+        }
+        System.out.println(results);
+
+
+
+
+
+
+
+
 
 
 

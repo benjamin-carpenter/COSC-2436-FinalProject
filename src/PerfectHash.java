@@ -8,8 +8,8 @@ public class PerfectHash<Node> {
      * @return nothing is intializer
      * @throws Nothing is implemented
      */
-    public PerfectHash(int size, int offSet){
-        data = new Node[size];
+    public PerfectHash(Node[] d, int offSet){
+        data = d;
         _offSet = offSet;
     }
     //preprocessing
@@ -48,9 +48,9 @@ public class PerfectHash<Node> {
      * @return The data of the ticket number given
      * @throws Nothing is implemented
      */
-    public String fetch(int ticket){
+    public Node fetch(int ticket){
         int index = preprocessing(ticket);
-        return data[index]._name;
+        return data[index];
     }
     // update
     /* calls preprocessing to convert ticket number into database index then uses to update the databe at index to the new name
@@ -58,9 +58,9 @@ public class PerfectHash<Node> {
      * @return true
      * @throws Nothing is implemented
      */
-    public boolean update(int ticket, String name){
+    public boolean update(int ticket, Node name){
         int index = preprocessing(ticket);
-        data[index] = new Node(ticket, name);
+        data[index] = name;
         return true;
     }
     // delete operation
